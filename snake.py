@@ -1,6 +1,6 @@
 '''
 Nom: Leticia Dépierraz
-Programme : Début de Pygame
+Programme : Début de Pygame, recréation du snake
 Date : 1 juin 2024
 '''
 
