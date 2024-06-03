@@ -6,16 +6,18 @@ Date : 1 juin 2024
 
 import pygame
 from random import randint
-import tkinter as tk
+from tkinter import *
 
-#partie tk inter pour le premier menue
+# Partie Tkinter pour le premier menu
 def start_game():
     win.destroy()  # Fermer la fenêtre Tkinter et commencer le jeu Pygame
 
-
 # Configuration de la fenêtre Tkinter
-win = tk.Tk()
+win = Tk()
 win.title("Menu Principal")
+#définir la couleur de la fenêtre
+win.configure(bg='#B8D9CD')
+
 def center_window(window, width, height):
     """
     Permet de centrer la fenêtre.
@@ -33,25 +35,24 @@ def center_window(window, width, height):
 
     # Positionnement de la fenêtre
     window.geometry(f"{width}x{height}+{center_x}+{center_y}")
-center_window(win, 200, 200)
-############
-# Variables
-############
-# Création de la fenêtre principale
 
-root_width = 320
-root_height = 200
+center_window(win, 300, 200)
 
-#frame
-frame_nom_jeu = tk.Frame(win, width=root_width, height=root_height)
+# Frame
+frame_nom_jeu = Frame(win,bg="#B8D9CD")
+frame_nom_jeu.pack(pady=20)
 
+# Label
+label = Label(frame_nom_jeu, text="Jeu du Snake", background="#B8D9CD")
+label.pack()
 
 # Ajout d'un bouton pour démarrer le jeu
-start_button = tk.Button(win, text="Démarrer le jeu", command=start_game)
+start_button = Button(win, text="Démarrer le jeu", command=start_game,bg="#DCF2EC")
 start_button.pack(pady=20)
 
 win.mainloop()
 
+# Partie Pygame
 def drawFood():
     food_color = pygame.Color(255, 0, 0)
     food_rect = pygame.Rect((food[0] * tile_W, food[1] * tile_H), (tile_W, tile_H))
@@ -89,9 +90,8 @@ def updateSnake(direction):
 # Initialisation de Pygame
 pygame.init()
 
-#variable
+# Variable
 score = 0
-
 font = pygame.font.SysFont('Arial', 25)
 
 # Générer la fenêtre de notre jeu
@@ -125,10 +125,8 @@ food = [tiles_X // 2, tiles_Y // 2]
 
 # Boucle principale du jeu
 running = True
-# Premier chiffre: -1 = gauche, 0 = bouge pas, 1 = droite // -1 = haut, 0 = bouge pas, 1 = bas
 direction = [1, 0]
 
-# Boucle tant que cette condition est vraie
 while running:
     pygame.time.Clock().tick(20)
 
@@ -137,20 +135,18 @@ while running:
 
     # Si le joueur ferme cette fenêtre
     for event in pygame.event.get():
-        # Si l'événement est fermeture de fenêtre
         if event.type == pygame.QUIT:
             running = False
-        # Si une touche est pressée
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 running = False
-            elif event.key == pygame.K_RIGHT and not direction == [-1,0]:  # Touche pour aller à droite
+            elif event.key == pygame.K_RIGHT and direction != [-1, 0]:  # Touche pour aller à droite
                 direction = [1, 0]
-            elif event.key == pygame.K_LEFT and not direction == [1,0]:  # Touche pour aller à gauche
+            elif event.key == pygame.K_LEFT and direction != [1, 0]:  # Touche pour aller à gauche
                 direction = [-1, 0]
-            elif event.key == pygame.K_UP and not direction == [0,1]:  # Touche pour aller en haut
+            elif event.key == pygame.K_UP and direction != [0, 1]:  # Touche pour aller en haut
                 direction = [0, -1]
-            elif event.key == pygame.K_DOWN and not direction == [0,-1]:  # Touche pour aller en bas
+            elif event.key == pygame.K_DOWN and direction != [0, -1]:  # Touche pour aller en bas
                 direction = [0, 1]
 
     # Mettre à jour le snake
