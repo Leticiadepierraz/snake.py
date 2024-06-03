@@ -6,7 +6,55 @@ Date : 1 juin 2024
 
 import pygame
 from random import randint
+<<<<<<< HEAD
 from tkinter import *
+=======
+import tkinter as tk
+
+#partie tk inter pour le premier menue
+def start_game():
+    win.destroy()  # Fermer la fenêtre Tkinter et commencer le jeu Pygame
+
+
+# Configuration de la fenêtre Tkinter
+win = tk.Tk()
+win.title("Menu Principal")
+def center_window(window, width, height):
+    """
+    Permet de centrer la fenêtre.
+    :param window: la fenêtre à centrer
+    :param width: largeur de la fenêtre
+    :param height: hauteur de la fenêtre
+    """
+    # Calcul de la taille de l'écran
+    screen_width = window.winfo_screenwidth()
+    screen_height = window.winfo_screenheight()
+
+    # Calcul des coordonnées pour centrer la fenêtre
+    center_x = int(screen_width / 2 - width / 2)
+    center_y = int(screen_height / 2 - height / 2)
+
+    # Positionnement de la fenêtre
+    window.geometry(f"{width}x{height}+{center_x}+{center_y}")
+center_window(win, 200, 200)
+############
+# Variables
+############
+# Création de la fenêtre principale
+
+root_width = 320
+root_height = 200
+
+#frame
+frame_nom_jeu = tk.Frame(win, width=root_width, height=root_height)
+
+
+# Ajout d'un bouton pour démarrer le jeu
+start_button = tk.Button(win, text="Démarrer le jeu", command=start_game)
+start_button.pack(pady=20)
+
+win.mainloop()
+>>>>>>> f703d810b251548b4cf29989df6412652c421bfc
 
 # Partie Tkinter pour le premier menu
 def start_game():
@@ -90,8 +138,14 @@ def updateSnake(direction):
 # Initialisation de Pygame
 pygame.init()
 
+<<<<<<< HEAD
 # Variable
 score = 0
+=======
+#variable
+score = 0
+
+>>>>>>> f703d810b251548b4cf29989df6412652c421bfc
 font = pygame.font.SysFont('Arial', 25)
 
 # Générer la fenêtre de notre jeu
